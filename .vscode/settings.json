@@ -1,0 +1,7 @@
+{
+    "editor.minimap.enabled": true,
+    "editor.minimap.sectionHeaderFontSize": 2,
+    "editor.minimap.scale": 1,
+    "editor.minimap.maxColumn": 100,
+    "editor.minimap.autohide": true
+}
