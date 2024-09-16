@@ -19,14 +19,14 @@
           "NSAllowsArbitraryLoads": true
         }
       },
-      "bundleIdentifier": "com.chonnatee.computerbook"
+      "bundleIdentifier": "com.akalak.computerbook"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.chonnatee.computerbook",
+      "package": "com.akalak.computerbook",
       "permissions": [
         "INTERNET"
       ],
