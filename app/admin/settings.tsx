@@ -104,16 +104,27 @@ const Settings = () => {
 
   const submitSaveForm = useCallback(async () => {
     setModalVisible(true);
-    const formData = new FormData();
-    formData.append('th_name', bookTitleThai);
-    formData.append('eng_name', bookTitleEnglish);
-    formData.append('book_image', bookImage ? { uri: bookImage, type: 'image/jpeg', name: 'book_image.jpeg' } : '' as any);
+    try {
+      const formData = new FormData();
+      formData.append('th_name', bookTitleThai);
+      formData.append('eng_name', bookTitleEnglish);
+      formData.append('book_image', bookImage ? { uri: bookImage, type: 'image/jpeg', name: 'book_image.jpeg' } : '' as any);
 
-    const response = await fetch(`${apiUrl}/api/v1/books/update/${bookId}`, {
-      method: 'PATCH',
-      body: formData,
-      headers: { 'Accept': 'application/json', 'Content-Type': 'multipart/form-data' },
-    });
+      const response = await fetch(`${apiUrl}/api/v1/books/update/${bookId}`, {
+        method: 'PATCH',
+        body: formData,
+        headers: { 'Accept': 'application/json', 'Content-Type': 'multipart/form-data' },
+      });
+
+      if (response.ok) {
+        Alert.alert("สำเร็จ!", "แก้ไขหนังสือแล้ว​", [{ text: "OK" }])
+        setTimeout(() => { setModalVisible(false) }, 1000)
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setModalVisible(false);
+    }
   }, [bookTitleThai, bookTitleEnglish, bookImage])
 
   return (

@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from "react-native";
 
-export const current_port = "5001";
-export const current_ip = "172.20.10.2";
+// export const current_port = "5001";
+// export const current_ip = "172.20.10.2";
 // export const current_ip = "13.55.110.53";
-export const apiUrl = `http://${current_ip}:${current_port}`;
-// export const apiUrl = "https://backend-express-api-book-for-computer.onrender.com";
+// export const apiUrl = `http://${current_ip}:${current_port}`;
+export const apiUrl = `https://book-for-computer-backend.onrender.com`;
 
 async function request(url: string, options: RequestInit = {}) {
     const token = await AsyncStorage.getItem("userToken");
