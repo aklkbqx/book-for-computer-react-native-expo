@@ -1,7 +1,7 @@
 import TextTheme from '@/components/TextTheme';
 import { router, useFocusEffect } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, TextInput, TouchableOpacity, ScrollView, RefreshControl, ActivityIndicator, Image } from 'react-native';
+import { View, TextInput, TouchableOpacity, ScrollView, RefreshControl, Image, ActivityIndicator } from 'react-native';
 import { useStatusBar } from '@/hook/useStatusBar';
 import { Ionicons } from '@expo/vector-icons';
 import twclass from '@/constants/twclass';
@@ -16,6 +16,7 @@ const Home = () => {
   const [filteredBooks, setFilteredBooks] = useState<BookData[]>([]);
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [allBooks, setAllBooks] = useState<Record<string, BookData> | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const { isLoggedIn, isCheckingLogin, checkLoginStatus } = useLoginStatus();
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -26,18 +27,21 @@ const Home = () => {
       fetchUserData(setUserData);
     }
     if (userData?.role == "ADMIN") {
-      router.replace("/admin/");
+      router.replace("/admin");
     }
   });
 
   const fetchBooks = async () => {
+    setIsLoading(true);
     const res = await api.get('/api/v1/books');
     if (res.length > 0) {
       setAllBooks(res);
       setFilteredBooks(Object.values(res));
+      setIsLoading(false);
     } else {
       setAllBooks(null);
       setFilteredBooks([]);
+      setIsLoading(false);
     }
   }
   const onRefresh = () => {
@@ -64,6 +68,7 @@ const Home = () => {
   //     fetchBooks();
   //   }, [allBooks])
   // );
+
   useEffect(() => {
     fetchBooks();
   }, [])
@@ -85,7 +90,15 @@ const Home = () => {
         }
       >
         <View style={twclass("p-5")}>
-          <TextTheme font='Prompt-SemiBold' size='3xl' style={twclass("text-sky-800")}>อยากจะเรียนอะไร?</TextTheme>
+          <View style={twclass("flex-row gap-2 items-center justify-between")}>
+            <TextTheme font='Prompt-SemiBold' size='3xl' style={twclass("text-sky-800")}>อยากจะเรียนอะไร?</TextTheme>
+            {isLoading ? (
+              <View style={twclass("flex-row gap-2 mb-2")}>
+                <TextTheme>กำลังโหลดข้อมูล</TextTheme>
+                <ActivityIndicator color={"#265881"} />
+              </View>
+            ) : null}
+          </View>
           <View style={twclass("flex-row gap-2")}>
             <TextInput
               value={searchInput}

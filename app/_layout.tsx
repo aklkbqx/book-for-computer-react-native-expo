@@ -8,7 +8,7 @@ export default function RootLayout() {
       <ThemeProvider value={DefaultTheme}>
         <Stack screenOptions={{ animationDuration: 400 }}>
           <Stack.Screen name="index" options={{ headerShown: false, animation: "fade" }} />
-          <Stack.Screen name="(home)" options={{ headerShown: false, animation: "fade" }} />
+          <Stack.Screen name="(home)" options={{ headerShown: false, animation: "fade" }} /> 
           <Stack.Screen name="(auth)" options={{ headerShown: false, animation: "slide_from_bottom", presentation: "modal" }} />
           <Stack.Screen name="admin" options={{ headerShown: false, animation: "fade" }} />
           <Stack.Screen name="no-internet" options={{ headerShown: false, animation: "fade" }} />
