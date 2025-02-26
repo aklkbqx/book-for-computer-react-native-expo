@@ -84,4 +84,4 @@ If you encounter any issues or need assistance, you can reach us through:
 
 ## 📄 License
 
-© 2025 Akalak Kruaboon Team. All Rights Reserved.
+© 2025 Akalak Kruaboon.
