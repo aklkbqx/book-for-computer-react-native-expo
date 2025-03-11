@@ -4,7 +4,7 @@ import { Alert } from "react-native";
 // export const current_port = "5001";
 // export const current_ip = "192.168.8.103";
 // export const apiUrl = `http://${current_ip}:${current_port}`;
-export const apiUrl = `https://book-for-computer-backend.onrender.com`;
+export const apiUrl = `https://book-for-computer.aklkbqx.xyz`;
 
 async function request(url: string, options: RequestInit = {}) {
     const token = await AsyncStorage.getItem("userToken");
